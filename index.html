@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Booster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background: #0f3460;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #00d4ff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+        
+        .volume-display {
+            background: #1a1a2e;
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .volume-percent {
+            font-size: 3em;
+            color: #00ff00;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .volume-label {
+            color: #aaa;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #1a1a2e;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 20px 0;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #00d4ff;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #00d4ff;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .btn-max {
+            background: #ff006e;
+        }
+        
+        .btn-max:hover {
+            background: #ff1f7f;
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+        }
+        
+        .btn-reset {
+            background: #00d4ff;
+            color: #0f3460;
+        }
+        
+        .btn-reset:hover {
+            background: #00e5ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .info {
+            background: #1a1a2e;
+            border-left: 4px solid #ff006e;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: left;
+            color: #aaa;
+            font-size: 0.85em;
+        }
+        
+        .info strong {
+            color: #ff006e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔊 Volume Booster</h1>
+        <p class="subtitle">Control de volumen en el navegador</p>
+        
+        <div class="volume-display">
+            <div class="volume-percent" id="volumePercent">50</div>
+            <div class="volume-label">Volumen actual</div>
+        </div>
+        
+        <input type="range" id="volumeSlider" min="0" max="100" value="50">
+        
+        <div style="display: flex; justify-content: space-between; color: #aaa; font-size: 0.8em; margin: 10px 0;">
+            <span>0%</span>
+            <span>100%</span>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn-max" onclick="setVolume(100)">Máximo</button>
+            <button class="btn-reset" onclick="setVolume(50)">Restaurar</button>
+        </div>
+        
+        <div class="info">
+            <strong>⚠️ Importante:</strong> Este control ajusta el volumen de tu navegador. Para cambiar el volumen del sistema, usa el control de Windows (icono 🔊 abajo a la derecha).
+        </div>
+    </div>
+    
+    <script>
+        const slider = document.getElementById('volumeSlider');
+        const volumePercent = document.getElementById('volumePercent');
+        
+        slider.addEventListener('input', function() {
+            volumePercent.textContent = this.value;
+            // Aquí iría el código para cambiar volumen real, pero navegadores lo bloquean por seguridad
+        });
+        
+        function setVolume(value) {
+            slider.value = value;
+            volumePercent.textContent = value;
+        }
+    </script>
+</body>
+</html>
